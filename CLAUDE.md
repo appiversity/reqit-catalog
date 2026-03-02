@@ -6,7 +6,7 @@ This is the **reqit catalog** — a self-hosted web application for managing aca
 
 ## Project Family
 
-Reqit is organized as 5 sibling projects:
+Reqit is organized as 4 sibling projects:
 
 | Project | What | Visibility |
 |---------|------|-----------|
@@ -14,9 +14,8 @@ Reqit is organized as 5 sibling projects:
 | **reqit-sdk** | Phase 1 — `reqit` npm package: parser, AST, resolver, auditor, exporters | Open source |
 | **reqit-pg** | Phase 2 — `reqit-pg` npm package: PostgreSQL schema, materialization, rollover | Open source |
 | **reqit-catalog** (this repo) | Phase 3 — Self-hosted web app: Express 5, Pug, HTMX, Bootstrap 5, PostgreSQL | Open source |
-| **reqit-cloud** | Phase 4 — SaaS hosted instance: multi-tenancy, billing, onboarding | Private |
 
-**Dependency chain:** reqit-sdk → reqit-pg → reqit-catalog → reqit-cloud
+**Dependency chain:** reqit-sdk → reqit-pg → reqit-catalog
 
 All design documents live in `../reqit-specs/design/`. Read `../reqit-specs/design/strategy.md` for the master plan.
 
@@ -65,13 +64,13 @@ These design documents define what this application implements:
 - **No SPA frameworks.** No React, Vue, Angular. Server-rendered with HTMX for interactivity.
 - **Font Awesome for all icons.** No Bootstrap Icons.
 - **FERPA boundary:** Reqit never stores student data. Transcripts are in-memory input to `audit()`.
-- **Single-tenant.** Multi-tenancy is reqit-cloud's responsibility.
+- **Single-tenant.** This application serves one institution per deployment.
 
 ## What NOT to Do
 
 - Do not use React, Vue, Angular, or any SPA framework
 - Do not use Bootstrap Icons — use Font Awesome
 - Do not store student data
-- Do not implement multi-tenancy — that's reqit-cloud
-- Do not implement billing/payment — that's reqit-cloud
+- Do not implement multi-tenancy — this is a single-tenant application
+- Do not implement billing/payment — this is open source software
 - Do not duplicate parser/AST/schema logic — depend on reqit-sdk and reqit-pg
