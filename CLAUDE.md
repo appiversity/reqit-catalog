@@ -66,6 +66,14 @@ These design documents define what this application implements:
 - **FERPA boundary:** Reqit never stores student data. Transcripts are in-memory input to `audit()`.
 - **Single-tenant.** This application serves one institution per deployment.
 
+## Coding Standards
+
+See `../reqit-specs/CLAUDE.md` for project-wide coding standards. Key points for this application:
+- Use `courseKey()` from reqit-sdk for all course key construction — never inline the pattern
+- Precise test assertions with exact expected counts
+- Exhaustiveness guards where applicable
+- Server-rendered with HTMX — no client-side rendering frameworks
+
 ## What NOT to Do
 
 - Do not use React, Vue, Angular, or any SPA framework
